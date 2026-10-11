@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050906"><title>Loyiha haqida — CyberAI Pro</title>
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg', v=2) }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><link rel="stylesheet" href="{{ url_for('static', filename='cyberai.css') }}">
+<style>
+.about-page-main{max-width:1050px;margin:0 auto;padding:44px 24px 64px;position:relative;z-index:1}
+.about-hero{padding:34px;border:1px solid rgba(57,127,240,.22);border-radius:20px;background:rgba(3,7,14,.82);box-shadow:0 20px 70px #0004}
+.about-hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin:12px 0}.about-hero h1 span,.about-card h2 span{color:var(--green)}
+.about-hero p,.about-card p,.about-card li{color:#a5acb6;font-size:13px;line-height:1.85}
+.about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.about-card{border:1px solid rgba(90,110,142,.2);border-radius:15px;padding:22px;background:rgba(3,7,13,.78)}
+.about-card h2{font-size:17px;margin:0 0 10px}.about-card ul{padding-left:20px;margin:8px 0 0}.about-card li{margin:5px 0}
+.about-nav{display:flex;justify-content:space-between;align-items:center;padding:17px 24px;border-bottom:1px solid rgba(90,110,142,.16);position:relative;z-index:2}
+.about-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.about-pill{display:inline-block;padding:8px 12px;border:1px solid rgba(57,127,240,.25);border-radius:9px;color:#c7daf8;font-size:11px}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}.about-hero{padding:23px}.about-page-main{padding:24px 15px 45px}.about-nav{padding:14px 16px}}
+</style></head>
+<body class="landing-page cai-shell">{% set cai_active = 'about' %}{% include '_shell.html' %}<canvas class="matrix-bg" aria-hidden="true"></canvas><div class="matrix-vignette"></div>
+<header class="about-nav"><a class="brand" href="{{ '/chat' if user else '/' }}"><span class="brand-mark">⌘</span><span>CyberAI <em>Pro</em><small>ABOUT THE PROJECT</small></span></a><a class="nav-login" href="{{ '/chat' if user else '/auth' }}">{{ '← Chatga qaytish' if user else 'Ishni boshlash ↗' }}</a></header>
+<main class="about-page-main">
+<section class="about-hero"><div class="section-kicker">CYBERAI PRO · LOYIHA HAQIDA</div><h1>Bilim bilan himoyani <span>kuchaytir.</span></h1><p>CyberAI Pro — o‘zbek tilida savollarga javob olish, dasturlashni o‘rganish, kodlarni tushunish va kiberxavfsizlikning himoyaviy yo‘nalishlarini o‘rganishga mo‘ljallangan AI yordamchi platforma.</p><div class="about-actions"><span class="about-pill">AI yordamchi</span><span class="about-pill">Kod tahlili</span><span class="about-pill">Matrix interfeysi</span><span class="about-pill">Admin va Premium</span></div></section>
+<section class="about-grid">
+<article class="about-card"><h2><span>01.</span> AI savol-javob</h2><p>Umumiy mavzular, dasturlash, xatolarni tushuntirish va himoyaviy kiberxavfsizlik bo‘yicha javoblar beradi. Javob sifati tanlangan model, API kaliti va xizmat kvotasiga bog‘liq.</p></article>
+<article class="about-card"><h2><span>02.</span> Rasm yuborish</h2><p>Chatga PNG, JPG/JPEG yoki WEBP formatidagi, 5 MB gacha rasm biriktirish mumkin. AI provayderi tasvirli so‘rovlarni qo‘llab-quvvatlashi kerak.</p></article>
+<article class="about-card"><h2><span>03.</span> Chat tarixi</h2><p>Foydalanuvchining suhbatlari akkaunt bilan bog‘langan holda saqlanadi. Tarixdan qidirish, yozuvlarni o‘chirish va oldingi suhbatlardan kontekst ishlatish imkoniyatlari mavjud.</p></article>
+<article class="about-card"><h2><span>04.</span> Kod bilan ishlash</h2><p>Kod bloklarini o‘qish va nusxalash qulayligi ko‘zda tutilgan. Rangli sintaksis ko‘rinishi javobdagi kod formatiga va interfeysning amaldagi holatiga bog‘liq.</p></article>
+<article class="about-card"><h2><span>05.</span> Matrix dizayni</h2><p>Qora-yashil mavzu, ekran o‘lchamiga mos chat, ikki chetdagi dekorativ kod yomg‘iri va CyberAI Pro favicon ishlatiladi.</p></article>
+<article class="about-card"><h2><span>06.</span> Akkaunt va himoya</h2><p>Username/parol orqali ro‘yxatdan o‘tish va kirish, parol xeshini saqlash, CSRF tekshiruvlari, xavfsizlik sarlavhalari va login urinishlarini cheklash mavjud.</p></article>
+<article class="about-card"><h2><span>07.</span> Premium obuna</h2><p>Tariflar: 1 oy — 15 000 so‘m, 3 oy — 40 000 so‘m, 6 oy — 70 000 so‘m, 1 yil — 100 000 so‘m. To‘lov so‘rovi administrator tomonidan qo‘lda tekshiriladi; ilova to‘lovni avtomatik amalga oshirmaydi.</p></article>
+<article class="about-card"><h2><span>08.</span> Admin panel</h2><p>Admin kutayotgan Premium so‘rovlarini ko‘rib chiqishi, foydalanuvchilarni qidirishi va qo‘lda obuna berishi mumkin. Admin ruxsati server tomonida tekshiriladi.</p></article>
+<article class="about-card"><h2><span>09.</span> Bepul va Pro cheklovlari</h2><p>Bepul hisob: bitta savol 5 000 belgigacha, oldingi 4 ta almashinuv kontekstga qo‘shiladi. Pro: 10 000 belgigacha va oldingi 12 ta almashinuvgacha.</p></article>
+<article class="about-card"><h2><span>10.</span> Texnologiyalar</h2><p>Python va Flask serveri, SQLite ma’lumotlar bazasi, HTML/CSS/JavaScript interfeysi hamda OpenAI-compatible chat-completions API orqali AI provayderi bilan bog‘lanish.</p></article>
+</section>
+<section class="about-card" style="margin-top:14px"><h2><span>Mas’uliyatli foydalanish</span></h2><p>Platformadan o‘rganish va himoya maqsadida foydalaning. Xavfsizlik sinovlarini faqat o‘zingizga tegishli yoki aniq ruxsat berilgan tizimlarda bajaring. AI javoblari xato bo‘lishi mumkin — muhim qarorlar oldidan tekshiring.</p><p><b>Texnik eslatma:</b> AI funksiyasi uchun `.env` ichida API kaliti, API manzili va model nomi to‘g‘ri sozlangan bo‘lishi kerak. Ommaviy serverga joylashtirishdan oldin HTTPS, doimiy rate limiting, ma’lumotlar bazasi zaxirasi va production serverini sozlash tavsiya etiladi.</p></section>
+</main><footer class="landing-footer"><a class="brand" href="{{ '/chat' if user else '/' }}"><span class="brand-mark">⌘</span><span>CyberAI <em>Pro</em></span></a><span>AI yordamchi · Kiberxavfsizlik · Kelajak uchun</span><span>© 2026 CYBERAI PRO</span></footer>
+<script src="{{ url_for('static',filename='matrix.js') }}"></script></body></html>

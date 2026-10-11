@@ -1,0 +1,1 @@
+CyberAI Pro reference layout update. Matrix effects and alternate login methods removed from landing UI. Landing page opens centered username/password login first; existing Flask authentication routes and database structure retained. Preserve your production environment variables and database during deployment.

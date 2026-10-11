@@ -1,0 +1,7 @@
+CyberAI Pro — Animated Neon Theme
+
+Based on the existing Glass Login project ZIP.
+Changes: CSS-only animated navy background, drifting cyan/blue/purple light streaks, pulsing neon panel borders, and animated gradient buttons.
+Preserves app.py, templates, route names, form names, JavaScript, and requirements unchanged.
+No .env or database is included. Keep your Render Environment Variables and existing database/storage.
+If you prefer no motion, enable Reduce Motion in your operating system/browser accessibility settings.

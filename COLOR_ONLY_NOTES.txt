@@ -1,0 +1,3 @@
+CyberAI Pro — Color-only palette update
+
+Only CSS colors, borders, backgrounds, gradients, shadows, and Matrix background opacity were adjusted to a navy/blue/cyan/purple palette. No layout, sizing, spacing, templates, routes, JavaScript, or database files were changed.

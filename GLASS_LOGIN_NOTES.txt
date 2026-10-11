@@ -1,0 +1,3 @@
+CyberAI Pro glass-login visual update
+
+Only static/style.css was extended with auth-page-scoped visual rules. Existing HTML form actions, field names, routes, and JavaScript behavior are unchanged. No environment variables or database are included.

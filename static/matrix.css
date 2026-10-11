@@ -1,0 +1,30 @@
+/* Matrix rain background shared by login, registration and chat */
+#matrix-rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.32}
+body.auth-page,body.workspace-page{--bg:#020408;--panel:#040912;--line:rgba(49,120,235,.20);--text:#eff5ff;--muted:#9199a7;--blue:#2874ed;--cyan:#3981f4;--green:#3981f4;background:#020408!important;color:#eff5ff}
+body.auth-page:after,body.workspace-page:after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(0,9,24,.18),rgba(0,2,4,.76) 85%)}
+body.auth-page .topbar,body.auth-page .hero,body.auth-page .footer,body.workspace-page .sidebar,body.workspace-page .work-main,body.workspace-page .right-panel{z-index:1}
+body.auth-page .ambient{display:none}
+body.auth-page .auth-card{border-color:rgba(49,120,235,.38);background:rgba(2,6,11,.87);backdrop-filter:blur(13px);box-shadow:0 20px 80px #000b,0 0 35px rgba(35,119,255,.06);border-radius:5px}
+body.auth-page .brand>span:not(.brand-mark),body.auth-page .brand small,body.auth-page .brand-mark{color:#3981f4;border-color:rgba(57,129,244,.55)}
+body.auth-page .brand-mark,body.auth-page .shield{background:rgba(20,110,255,.08);border-color:rgba(57,129,244,.38);color:#3981f4}
+body.auth-page .hero h1 em,body.auth-page .eyebrow,body.auth-page .feature-row b,body.auth-page .terminal-mini code b,body.auth-page .terminal-mini code span{color:#3981f4}
+body.auth-page .terminal-mini,body.auth-page .terminal-bar{background:rgba(2,6,11,.82);border-color:rgba(57,129,244,.2)}
+body.auth-page .auth-form input{background:rgba(1,3,7,.85);border-color:rgba(57,129,244,.3)}
+body.auth-page .auth-form input:focus{border-color:#3981f4;box-shadow:0 0 0 3px #3981f418}
+body.auth-page .tabs{background:rgba(1,3,7,.8)}body.auth-page .tab.active{background:rgba(57,129,244,.12);box-shadow:inset 0 0 0 1px rgba(57,129,244,.28);color:#eff5ff}
+body.auth-page .primary-btn{background:linear-gradient(100deg,#1761d9,#5596ff);color:#030912}
+body.auth-page .secure i{background:#3981f4;box-shadow:0 0 10px #3981f4}
+body.workspace-page{background:radial-gradient(ellipse at 45% -20%,rgba(0,27,70,.22) 0,transparent 50%),#020408!important}
+body.workspace-page .sidebar,body.workspace-page .right-panel{background:rgba(2,4,8,.87);backdrop-filter:blur(14px)}
+body.workspace-page .chat-wrap{background:rgba(2,6,11,.84);border-color:rgba(57,129,244,.22)}
+body.workspace-page .chat-toolbar{background:rgba(3,8,16,.94);border-color:rgba(57,129,244,.17)}
+body.workspace-page .nav-item.active,body.workspace-page .suggestion-grid button:hover{background:rgba(57,129,244,.09);border-color:rgba(57,129,244,.35)}
+body.workspace-page .suggestion-grid button,body.workspace-page .composer,body.workspace-page .message .bubble{background:rgba(3,8,15,.9);border-color:rgba(57,129,244,.2)}
+body.workspace-page .message.user .bubble{background:rgba(9,22,42,.91);border-color:rgba(57,129,244,.3)}
+body.workspace-page .composer:focus-within{border-color:#3981f4;box-shadow:0 0 0 3px #3981f412}
+body.workspace-page .composer button{background:linear-gradient(120deg,#1761d9,#5596ff);color:#030912}
+body.workspace-page .welcome-icon{background:rgba(57,129,244,.08);border-color:rgba(57,129,244,.3);color:#3981f4}
+body.workspace-page .welcome-block h2 em,body.workspace-page .right-head span,body.workspace-page .suggestion-grid button>b,body.workspace-page .message .role{color:#3981f4}
+body.workspace-page .online-pill{border-color:rgba(57,129,244,.24)}
+body.workspace-page .ethics-card{background:rgba(5,11,21,.85);border-color:rgba(57,129,244,.22)}
+@media(max-width:760px){#matrix-rain{opacity:.22}}

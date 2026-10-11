@@ -1,0 +1,5 @@
+CyberAI Pro visual refresh
+- Calmer navy background with periwinkle/cyan accents replaces the intense all-green Matrix look.
+- Matrix animation is visually toned down with CSS opacity.
+- Rounded cards, consistent borders, cleaner focus states, and improved responsive layouts.
+- No application routes or database schema were changed in this visual-only update.

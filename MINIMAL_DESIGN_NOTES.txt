@@ -1,0 +1,6 @@
+CyberAI Pro — Minimal Black & White
+
+- CSS-only visual refresh; no Python routes, JavaScript behavior, or database schema changed.
+- Matrix/code-rain background hidden.
+- Black/charcoal surfaces, white text, subtle grey borders, no neon color cycling.
+- Keep your existing Render environment variables and persistent database.

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#040b1f"><meta name="csrf-token" content="{{ csrf_token() }}"><title>CyberAI Pro — AI Chat</title><link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg', v=2) }}"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><link rel="stylesheet" href="{{ url_for('static',filename='cyberai.css') }}"></head>
+<body class="workspace-page cai-shell">
+{% set cai_active = 'chat' %}{% set cai_topbar %}<div class="cai-chat-head"><button type="button" class="icon-btn cai-tgl" data-toggle="hist" title="Chat tarixini yashirish / ko‘rsatish" aria-label="Chat tarixini yashirish yoki ko‘rsatish"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16"/></svg></button><div class="assistant-mark">⌘</div><div class="assistant-title"><b>CyberAI Pro</b><small>O‘zbekcha · Texnik yordam</small></div><button type="button" class="icon-btn cai-tgl" data-toggle="right" title="O‘ng panelni yashirish / ko‘rsatish" aria-label="O‘ng panelni yashirish yoki ko‘rsatish"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M15 4v16"/></svg></button><button id="stopBtn" class="icon-btn" title="Javob yozilishini to‘xtatish" hidden>■</button><button id="clear-chat" class="icon-btn" title="Ekranni tozalash">↺</button></div>{% endset %}
+{% include '_shell.html' %}
+<script>(function(){var B=document.body;try{var h=localStorage.getItem('cai.hist'),r=localStorage.getItem('cai.right');if(h==='1')B.classList.add('hist-collapsed');if(r==='1'||(r===null&&innerWidth<1600))B.classList.add('right-collapsed')}catch(e){}})();</script>
+{% set premium = user.premium_until and user.premium_until > now_text %}
+<div class="cai-chat-grid">
+
+<aside class="cai-panel cai-history" id="sidebar">
+<div class="cai-panel-head"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Chat tarixi</span><span class="cai-head-btns"><button type="button" class="cai-mini" id="new-chat">＋ Yangi</button><button type="button" class="cai-mini" data-toggle="hist" title="Yashirish" aria-label="Tarix panelini yashirish">‹</button></span></div>
+<input id="history-search" class="history-search" type="search" placeholder="Tarixdan qidirish…" aria-label="Suhbat tarixidan qidirish">
+<div id="history-list" class="history-list"><p class="muted">Hozircha tarix bo‘sh.</p></div>
+<div class="cai-history-foot"><a class="history-entry" href="/api/history/export">⬇ Tarixni yuklab olish</a><button type="button" id="clear-history" class="history-entry">Barcha tarixni o‘chirish</button></div>
+</aside>
+
+<main class="cai-center">
+<section class="chat-wrap">
+<div id="chat-display" class="chat-display">
+<div class="welcome-block cai-welcome">
+<div class="cai-hero">
+<svg width="84" height="84" viewBox="0 0 64 64" fill="none" aria-hidden="true"><polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="#0a1f4d" stroke="#2a8bff" stroke-width="3" stroke-linejoin="round"/><path d="M41 25.5A11 11 0 1 0 41 38.5" stroke="#6ab4ff" stroke-width="5" stroke-linecap="round"/></svg>
+<h2>CyberAI <span>Pro</span></h2>
+<p>Intellekt bilan yaratilgan <b>kelajak</b></p>
+<small>Xush kelibsiz, {{ user.username }}</small>
+</div>
+<div class="cai-features">
+<button type="button" class="cai-feature" data-prompt="Matn yaratish: "><i><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg></i><b>Matn yaratish</b><small>G‘oyalar, maqolalar, reja</small></button>
+<button type="button" class="cai-feature" data-prompt="Kod yozish: "><i><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/></svg></i><b>Kod yozish</b><small>Python, HTML, JS va boshq.</small></button>
+<button type="button" class="cai-feature" data-prompt="Rasmni tahlil qil: "><i><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></i><b>Rasm tahlili</b><small>Rasmni yuklab so‘rang</small></button>
+<button type="button" class="cai-feature" data-prompt="Fayl tahlili: "><i><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg></i><b>Fayl tahlili</b><small>Hujjat va ma’lumotlar</small></button>
+</div>
+</div>
+</div>
+<div id="image-preview" class="image-preview" hidden><img id="image-preview-img" alt="Tanlangan rasm"><span id="image-preview-name"></span><button type="button" id="remove-image" aria-label="Rasmni olib tashlash">×</button></div>
+<form id="chat-form" class="composer"><input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden><button id="attachBtn" type="button" class="attach-btn" title="Rasm yuborish" aria-label="Rasm yuborish">＋</button><textarea id="aiInput" rows="1" maxlength="{{ 10000 if premium else 5000 }}" placeholder="Savol yozing..." aria-label="Savolingiz"></textarea><button id="sendBtn" type="submit" aria-label="Yuborish">↑</button></form>
+<div class="composer-foot"><span>Shift + Enter — yangi qator · Enter — yuborish · Rasm: PNG/JPG/WEBP</span><span><i></i> SECURE SESSION</span></div>
+</section>
+</main>
+
+<aside class="cai-right">
+<section class="cai-panel">
+<div class="cai-panel-head"><span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 9h10M7 13h10M7 17h6"/></svg>So‘nggi yangiliklar</span><a href="/about" class="cai-more">Barchasi →</a></div>
+<a class="cai-news" href="/about"><i><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></i><span><b>AI texnologiyalari kelajagi</b><small>Sun’iy intellekt dunyoni o‘zgartirmoqda.</small></span><time>12 Okt</time></a>
+<a class="cai-news" href="/about"><i><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/></svg></i><span><b>Python’da yangi imkoniyatlar</b><small>Python 3.13 versiyasi haqida.</small></span><time>10 Okt</time></a>
+<a class="cai-news" href="/about"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></i><span><b>Web dasturlash trendlari</b><small>Eng muhim yo‘nalishlar.</small></span><time>8 Okt</time></a>
+<a class="cai-news" href="/about"><i><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></i><span><b>Rasm tahlili endi oson</b><small>AI bilan rasmlarni tushuntiring.</small></span><time>5 Okt</time></a>
+</section>
+<section class="cai-panel">
+<div class="cai-panel-head"><span><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Statistika</span></div>
+<div class="cai-stat"><span>Bugungi so‘rovlar</span><b id="usage-count">{{ usage.used }}/{{ usage.limit }}</b></div>
+<div class="cai-stat"><span>Qolgan kunlik limit</span><b id="usage-remaining">{{ usage.remaining }}</b></div>
+<div class="cai-stat"><span>Saqlangan suhbatlar</span><b>{{ thread_count|default(history|length) }}</b></div>
+<div class="cai-stat"><span>Obuna holati</span><b class="{{ 'ok' if premium }}">{{ 'PRO faol' if premium else 'Bepul' }}</b></div>
+</section>
+</aside>
+
+</div>
+<script src="{{ url_for('static',filename='chat2.js') }}"></script>
+<script>
+(function(){
+  var B=document.body,input=document.getElementById('aiInput');
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-toggle]');if(!b)return;var k=b.dataset.toggle,c=k==='hist'?'hist-collapsed':'right-collapsed';var on=B.classList.toggle(c);try{localStorage.setItem('cai.'+k,on?'1':'0')}catch(_){}});
+  document.addEventListener('click',function(e){var b=e.target.closest('.cai-feature');if(!b||!input)return;input.value=b.dataset.prompt||'';input.focus();input.dispatchEvent(new Event('input'))});
+  var p=new URLSearchParams(location.search).get('p');
+  if(p&&input){input.value=p;input.focus()}
+  if(location.hash==='#history'){var h=document.getElementById('history-search');if(h)h.focus()}
+})();
+</script>
+</body></html>

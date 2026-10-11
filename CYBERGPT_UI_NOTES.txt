@@ -1,0 +1,6 @@
+CyberAI Pro compact CyberGPT-style UI refresh
+- Refined charcoal/graphite palette with restrained cyan accent.
+- Chat history/messages scroll inside the conversation area instead of stretching the whole page.
+- Composer stays at the bottom and its text area has a height cap.
+- Responsive viewport sizing for desktop, short screens, and mobile.
+- App routes, chat JS, database, and backend are unchanged.
